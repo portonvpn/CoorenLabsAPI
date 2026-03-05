@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+  <video id="video" controls style="width: 100%; max-width: 800px; aspect-ratio: 16/9;"></video>
+  <script>
+    var video = document.getElementById('video');
+    // PASTE YOUR PROXY URL HERE
+
+    const url = "https://vault-99.owocdn.top/stream/99/02/6ff167641492ca920c706d7cc2e35f8fcd87294fadc08779db66af038ae99e6d/uwu.m3u8";
+
+    const headers = {
+      "Referer": "https://kwik.cx/"
+    };
+    var videoSrc = `http://localhost:3000/proxy/m3u8-proxy?url=https%3A%2F%2Fvault-99.owocdn.top%2Fstream%2F99%2F02%2Ffc304668dfadf84bb3785195e9e4cb959c4fdb8f78965d3ae3d6f37581f9ea18%2Fuwu.m3u8&headers=%7B%22referer%22%3A%22https%3A%2F%2Fkwik.cx%2F%22%7D`;
+
+    // video.setAttribute("src", videoSrc)
+
+    if (Hls.isSupported()) {
+      var hls = new Hls();
+      hls.loadSource(videoSrc);
+      hls.attachMedia(video);
+      hls.on(Hls.Events.MANIFEST_PARSED, function () { video.play(); });
+
+      // DEBUGGING: This will tell us EXACTLY why it fails
+      hls.on(Hls.Events.ERROR, function (event, data) {
+        console.log("HLS Error:", data.type, data.details);
+      });
+    }
+  </script>
+</body>
+
+</html>

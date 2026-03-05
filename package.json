@@ -1,0 +1,27 @@
+{
+  "name": "cooren",
+  "module": "src/index.ts",
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@types/string-similarity": "^4.0.2"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "private": true,
+  "scripts": {
+    "dev": "bun run --hot src/index.ts",
+    "start": "bun run src/index.ts",
+    "build": "bun build src/index.ts --outdir dist --minify --sourcemap",
+    "test": "bun run scripts/tests/index.ts"
+  },
+  "type": "module",
+  "dependencies": {
+    "@elysiajs/cors": "^1.4.1",
+    "@elysiajs/openapi": "^1.4.14",
+    "cheerio": "^1.2.0",
+    "elysia": "^1.4.27",
+    "string-similarity": "^4.0.4",
+    "zod": "^4.3.6"
+  }
+}
