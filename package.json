@@ -2,8 +2,13 @@
   "name": "cooren",
   "module": "src/index.ts",
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
     "@types/bun": "latest",
-    "@types/string-similarity": "^4.0.2"
+    "@types/eslint__js": "^9.14.0",
+    "@types/string-similarity": "^4.0.2",
+    "@types/tough-cookie": "^4.0.5",
+    "eslint": "^10.0.2",
+    "typescript-eslint": "^8.56.1"
   },
   "peerDependencies": {
     "typescript": "^5"
@@ -13,16 +18,21 @@
     "dev": "bun run --hot src/index.ts",
     "start": "bun run src/index.ts",
     "build": "bun build src/index.ts --outdir dist --minify --sourcemap",
-    "test": "bun run scripts/tests/index.ts"
+    "test": "bun run scripts/tests/index.ts",
+    "lint": "eslint src",
+    "lint:fix": "eslint src --fix"
   },
   "type": "module",
   "dependencies": {
     "@elysiajs/cors": "^1.4.1",
     "@elysiajs/openapi": "^1.4.14",
+    "axios": "^1.13.6",
+    "axios-cookiejar-support": "^6.0.5",
     "cheerio": "^1.2.0",
     "elysia": "^1.4.27",
     "puppeteer-real-browser": "^1.4.4",
     "string-similarity": "^4.0.4",
+    "tough-cookie": "^6.0.0",
     "zod": "^4.3.6"
   }
 }

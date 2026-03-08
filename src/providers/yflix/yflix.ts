@@ -12,7 +12,7 @@ export class yFlix {
     return extractHomeData(data.text);
   }
 
-  static async search(query: string) {
+  static async search(_query: string) {
     return "GARBAGE";
   }
 }
