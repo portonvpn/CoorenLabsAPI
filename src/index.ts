@@ -13,9 +13,10 @@ import { Logger } from "./core/logger";
 import { mappingRoutes } from "./core/mappingRoutes";
 import { proxyRoutes } from "./core/proxyRoutes";
 import { animeRoutes } from "./providers/anime/route";
-import { yFlixRoutes } from "./providers/yflix/route";
 import { mangaRoutes } from "./providers/manga/route";
+import { primesrcRoutes } from "./providers/primesrc/route";
 import { tidalRoutes } from "./providers/tidal/route";
+import { yFlixRoutes } from "./providers/yflix/route";
 
 validateConfig();
 
@@ -56,24 +57,15 @@ app
       status: "operational"
     };
   })
-  .use(animeRoutes)
   .use(yFlixRoutes)
+  .use(primesrcRoutes)
   .use(animeRoutes)
   .use(mangaRoutes)
   .use(tidalRoutes)
   .use(proxyRoutes)
   .use(mappingRoutes)
-  .get("/tidal-demo", () => Bun.file("tests/tidal_demo.html"))
-  .onError(({ code, error, set }: { code: string, error: Error, set: any }) => {
-    if (code === 'NOT_FOUND') {
-      set.status = 404;
-      return { status: 404, success: false, message: "Route not found", data: null };
-    }
-    set.status = 500;
-    return { status: 500, success: false, message: error.message || "Internal Server Error", data: null };
-  });
 
-  
+
 app.listen(PORT);
 
 Logger.info(
