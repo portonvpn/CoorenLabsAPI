@@ -1,28 +1,29 @@
 {
   "name": "cooren",
   "module": "src/index.ts",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "bun run --hot src/index.ts",
+    "start": "node index.js",
+    "build:node": "tsc --project tsconfig.json --outDir dist",
+    "build:bun": "bun build src/index.ts --outdir dist --minify --sourcemap",
+    "test": "bun run scripts/tests/index.ts",
+    "lint": "eslint src",
+    "lint:fix": "eslint src --fix"
+  },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "@types/bun": "latest",
-    "@types/eslint__js": "^9.14.0",
     "@types/string-similarity": "^4.0.2",
     "@types/tough-cookie": "^4.0.5",
     "eslint": "^10.0.2",
+    "typescript": "^5.0.0",
     "typescript-eslint": "^8.56.1"
   },
   "peerDependencies": {
     "typescript": "^5"
   },
-  "private": true,
-  "scripts": {
-    "dev": "bun run --hot src/index.ts",
-    "start": "bun run src/index.ts",
-    "build": "bun build src/index.ts --outdir dist --minify --sourcemap",
-    "test": "bun run scripts/tests/index.ts",
-    "lint": "eslint src",
-    "lint:fix": "eslint src --fix"
-  },
-  "type": "module",
   "dependencies": {
     "@elysiajs/cors": "^1.4.1",
     "@elysiajs/openapi": "^1.4.14",

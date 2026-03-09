@@ -1,4 +1,4 @@
-import axios, { AxiosInstance } from "axios";
+import axios, { type AxiosInstance } from "axios";
 import * as cheerio from "cheerio";
 
 export const MANGABALL_CDN_HOSTS = [

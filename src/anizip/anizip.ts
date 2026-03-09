@@ -18,7 +18,6 @@ type LookupParams = {
   livechart_id?: number;
 };
 
-
 export class AniZip {
   private static buildQuery(params: LookupParams): string {
     const entries = Object.entries(params).filter(
@@ -51,16 +50,21 @@ export class AniZip {
         return null;
       }
 
+      const d = parsed.data;
+      // Arranged in the exact sequence requested
       return {
-        mal_id: parsed.data.mal_id ?? null,
-        anilist_id: parsed.data.anilist_id ?? null,
-        themoviedb_id: parsed.data.themoviedb_id ?? null,
-        imdb_id: parsed.data.imdb_id ?? null,
-        thetvdb_id: parsed.data.thetvdb_id ?? null,
-        kitsu_id: parsed.data.kitsu_id ?? null,
-        anidb_id: parsed.data.anidb_id ?? null,
-        anisearch_id: parsed.data.anisearch_id ?? null,
-        livechart_id: parsed.data.livechart_id ?? null,
+        animeplanet_id: d.animeplanet_id ?? null,
+        kitsu_id: d.kitsu_id ?? null,
+        mal_id: d.mal_id ?? null,
+        type: d.type ?? null,
+        anilist_id: d.anilist_id ?? null,
+        anisearch_id: d.anisearch_id ?? null,
+        anidb_id: d.anidb_id ?? null,
+        notifymoe_id: d.notifymoe_id ?? null,
+        livechart_id: d.livechart_id ?? null,
+        thetvdb_id: d.thetvdb_id ?? null,
+        imdb_id: d.imdb_id ?? null,
+        themoviedb_id: d.themoviedb_id ?? null,
       };
     } catch (err) {
       Logger.warn(`AniZip getMappings error: ${String(err)}`);
@@ -68,8 +72,6 @@ export class AniZip {
     }
   }
 
-  // same as getMappings but ask for ALL the things (titles, episodes, images,
-  // the kitchen sink). again, null means AniZip was having a bad day.
   static async getFullData(
     params: LookupParams,
   ): Promise<AniZipResponse | null> {
@@ -96,17 +98,21 @@ export class AniZip {
       const d = parsed.data;
       return {
         mappings: {
-          mal_id: d.mappings.mal_id ?? null,
-          anilist_id: d.mappings.anilist_id ?? null,
-          themoviedb_id: d.mappings.themoviedb_id ?? null,
-          imdb_id: d.mappings.imdb_id ?? null,
-          thetvdb_id: d.mappings.thetvdb_id ?? null,
+          // Arranged in the exact sequence requested
+          animeplanet_id: d.mappings.animeplanet_id ?? null,
           kitsu_id: d.mappings.kitsu_id ?? null,
-          anidb_id: d.mappings.anidb_id ?? null,
+          mal_id: d.mappings.mal_id ?? null,
+          type: d.mappings.type ?? null,
+          anilist_id: d.mappings.anilist_id ?? null,
           anisearch_id: d.mappings.anisearch_id ?? null,
+          anidb_id: d.mappings.anidb_id ?? null,
+          notifymoe_id: d.mappings.notifymoe_id ?? null,
           livechart_id: d.mappings.livechart_id ?? null,
+          thetvdb_id: d.mappings.thetvdb_id ?? null,
+          imdb_id: d.mappings.imdb_id ?? null,
+          themoviedb_id: d.mappings.themoviedb_id ?? null,
         },
-        titles: d.titles,
+        titles: d.titles as Record<string, string>,
         episodes: d.episodes as Record<string, AniZipEpisode>,
         episodeCount: d.episodeCount,
         specialCount: d.specialCount,
@@ -118,9 +124,6 @@ export class AniZip {
     }
   }
 
-  // convenience wrapper that fetches the full response then plucks just
-  // the episode metadata. null means the universe doesn't want you to have
-  // episode info right now.
   static async getEpisodes(
     params: LookupParams,
   ): Promise<AniZipEpisode[] | null> {

@@ -37,12 +37,18 @@ const app = new Elysia()
   });
 
 app.use(openapi({
-  path: '/swagger', //Todo : Snozxyx (Fix : Make this /docs and add a redirect from /docs to /swagger)
+  path: '/docs',
   documentation: {
     info: {
-      title: 'Mangaball API Documentation',
-      version: '1.0.0',
-    }
+      title: 'Cooren API',
+      version: '1.0.0'
+    },
+    tags: [
+      { name: 'anime', description: '📺 Anime Providers & Mappings' },
+      { name: 'manga', description: '📚 Manga Providers (e.g., Mangaball)' },
+      { name: 'movie', description: '🍿 Movie & TV Providers' },
+      { name: 'proxy', description: '⚡ Utilities' }
+    ]
   }
 }));
 
@@ -56,6 +62,11 @@ app
       about: "Cooren is a high-performance, scalable scraping engine designed to collect, organize, and deliver structured data from across the world of anime, movies, manga, and music, all in one unified ecosystem",
       status: "operational"
     };
+  }, {
+    detail: { 
+      tags: ['core'], 
+      summary: 'System Status & API Overview' 
+    }
   })
   .use(yFlixRoutes)
   .use(primesrcRoutes)
