@@ -2,7 +2,7 @@ export const animepahe = "https://animepahe.si";
 export const animekai = "https://anikai.to";
 export const toonstream = "https://toonstream.dad";
 
-export const flixhq = "https://flixhq.to";
+export const flixhq = "https://flixhq.tw";
 export const yflix = "https://yflix.to";
 export const himovies = "https://himovies.sx";
 export const primesrc = "https://primesrc.me";
