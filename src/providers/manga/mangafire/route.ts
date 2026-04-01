@@ -112,7 +112,7 @@ export const mangafireRoutes = new Elysia({ prefix: "/mangafire" })
       detail: {
         tags: ["manga"],
         summary: "MangaFire Detail",
-        description: "Returns full metadata and chapter lists for a specific manga.",
+        description: "Returns metadata for a specific manga.",
       },
     },
   )
@@ -143,8 +143,7 @@ export const mangafireRoutes = new Elysia({ prefix: "/mangafire" })
       detail: {
         tags: ["manga"],
         summary: "MangaFire Read",
-        description:
-          "Returns direct image URLs for a specific chapter ID. Note: Current version primarily supports numeric Chapter IDs.",
+        description: "Returns direct image URLs for a specific chapter ID.",
       },
     },
   )
@@ -159,8 +158,7 @@ export const mangafireRoutes = new Elysia({ prefix: "/mangafire" })
       detail: {
         tags: ["manga"],
         summary: "MangaFire Volumes",
-        description:
-          "Returns a list of volumes for a given manga ID and language. Note: Returns site URL paths which are not currently directly readable via the /read endpoint.",
+        description: "Returns a list of volumes for a given manga ID and language.",
       },
     },
   );
